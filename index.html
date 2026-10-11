@@ -1,78 +1,158 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app="studentApp">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Registration | Ayushi Shah</title>
-  <meta name="description" content="Student Registration and Profile Form - AWT Practical Assignment by Ayushi Shah, GSFC University." />
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <style>
-    :root{--bg:#0b1020;--panel:#121a2d;--panel2:#17223a;--text:#eef3ff;--muted:#9caac5;--accent:#9b7bff;--accent2:#5dd6d0;--line:#293652;--danger:#ff8b9b;--success:#70e1b4}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0%,#25204a 0,transparent 34%),radial-gradient(circle at 95% 15%,#123a49 0,transparent 28%),var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);min-height:100vh}
-    .wrap{width:min(1120px,92%);margin:auto;padding:30px 0 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#101327;font-weight:900;font-size:20px}.eyebrow{color:var(--accent2);text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800}.brand h1{font-size:18px;margin:4px 0 0}.student-chip{border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--muted);font-size:12px}
-    .hero{margin:0 0 24px}.hero h2{font-size:clamp(27px,4vw,42px);letter-spacing:-1.2px;margin:0 0 9px}.hero p{margin:0;color:var(--muted);line-height:1.65;max-width:700px}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.9fr);gap:22px;align-items:start}.card{background:linear-gradient(160deg,rgba(23,34,58,.96),rgba(16,24,42,.97));border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 22px 70px #0002}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}.card h3{font-size:18px;margin:0 0 6px}.sub{color:var(--muted);font-size:12px;line-height:1.5}.pill{font-size:11px;color:var(--accent2);border:1px solid #2d777a;border-radius:999px;padding:7px 10px;white-space:nowrap}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:12px;color:#cbd6ec;font-weight:700}input,select,textarea{width:100%;border:1px solid #33415f;background:#0d1527;color:var(--text);border-radius:10px;padding:12px 13px;font:inherit;font-size:13px;outline:none;transition:.2s}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #9b7bff22}textarea{min-height:78px;resize:vertical}input::placeholder,textarea::placeholder{color:#71809e}.hint{font-size:11px;color:var(--muted)}.actions{display:flex;gap:10px;margin-top:19px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:12px 17px;font-weight:800;font-size:12px;cursor:pointer;transition:transform .15s,opacity .15s}.btn:hover{transform:translateY(-1px)}.primary{background:linear-gradient(100deg,var(--accent),#7b65ee);color:white;flex:1}.secondary{background:#202d47;color:#dce5f8;border:1px solid #354361}.alert{margin-top:14px;padding:11px 13px;border-radius:10px;font-size:12px;line-height:1.5}.alert.error{background:#421f32;color:#ffc0ca;border:1px solid #74334a}.alert.ok{background:#123b36;color:#a6f2d8;border:1px solid #24675a}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}.stat{background:#0e172a;border:1px solid var(--line);border-radius:14px;padding:15px}.stat span{font-size:11px;color:var(--muted)}.stat strong{display:block;font-size:24px;margin-top:6px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px}table{border-collapse:collapse;width:100%;min-width:420px;font-size:12px}th{text-align:left;background:#202a44;color:#bdc9e4;text-transform:uppercase;letter-spacing:.6px;font-size:10px}th,td{padding:13px 12px;border-bottom:1px solid var(--line)}td{color:#e1e8f7}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#ffffff05}.empty{text-align:center;padding:28px 15px;color:var(--muted);font-size:12px}.empty .icon{font-size:26px;margin-bottom:8px}.delete{background:#402334;color:#ffb8c4;border:1px solid #6a3449;border-radius:7px;padding:6px 8px;cursor:pointer;font-size:11px}.footer{text-align:center;color:#72809d;font-size:11px;margin-top:25px;line-height:1.7}.required{color:var(--danger)}
-    @media(max-width:850px){.layout{grid-template-columns:1fr}.top{align-items:flex-start}.student-chip{max-width:180px;text-align:center}}@media(max-width:520px){.wrap{width:94%;padding-top:20px}.card{padding:18px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{flex-direction:column}.student-chip{max-width:none}.hero h2{letter-spacing:-.6px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- AngularJS library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
-<body ng-controller="StudentController as vm">
-  <main class="wrap">
-    <header class="top">
-      <div class="brand"><div class="logo">S</div><div><div class="eyebrow">GSFC University · AWT Practical</div><h1>Student Profile Portal</h1></div></div>
-      <div class="student-chip">Ayushi Shah · 24BT04157</div>
-    </header>
-    <section class="hero"><h2>Student Registration<span style="color:var(--accent2)">.</span></h2><p>A simple student registration and profile application built with AngularJS. Enter student details, validate the form, and view registered students in the table.</p></section>
-    <div class="layout">
-      <section class="card">
-        <div class="card-head"><div><h3>Registration Form</h3><div class="sub">Fields marked <span class="required">*</span> are required.</div></div><span class="pill">NEW PROFILE</span></div>
-        <form name="registrationForm" ng-submit="vm.register(registrationForm)" novalidate>
-          <div class="form-grid">
-            <div class="field"><label for="name">Student name <span class="required">*</span></label><input id="name" name="name" ng-model="vm.form.name" placeholder="e.g. Ayushi Shah" required ng-minlength="2" /></div>
-            <div class="field"><label for="enrollment">Enrollment number <span class="required">*</span></label><input id="enrollment" name="enrollment" ng-model="vm.form.enrollment" placeholder="e.g. 24BT04157" required /></div>
-            <div class="field"><label for="email">Email address <span class="required">*</span></label><input id="email" name="email" type="email" ng-model="vm.form.email" placeholder="you@example.com" required /></div>
-            <div class="field"><label for="mobile">Mobile number <span class="required">*</span></label><input id="mobile" name="mobile" type="tel" ng-model="vm.form.mobile" placeholder="10-digit mobile number" ng-pattern="/^\d{10}$/" required /></div>
-            <div class="field"><label for="gender">Gender <span class="required">*</span></label><select id="gender" name="gender" ng-model="vm.form.gender" required><option value="">Select gender</option><option>Female</option><option>Male</option><option>Prefer not to say</option></select></div>
-            <div class="field"><label for="course">Course <span class="required">*</span></label><select id="course" name="course" ng-model="vm.form.course" required><option value="">Select course</option><option>B.Tech CSE</option><option>B.Tech IT</option><option>BCA</option><option>MCA</option><option>B.Sc</option><option>Other</option></select></div>
-            <div class="field"><label for="semester">Semester <span class="required">*</span></label><select id="semester" name="semester" ng-model="vm.form.semester" required><option value="">Select semester</option><option ng-repeat="n in [1,2,3,4,5,6,7,8]" value="{{n}}">Semester {{n}}</option></select></div>
-            <div class="field"><label for="hobbies">Hobbies</label><input id="hobbies" ng-model="vm.form.hobbies" placeholder="Reading, sports, music" /></div>
-            <div class="field full"><label for="address">Address</label><textarea id="address" ng-model="vm.form.address" placeholder="Enter your address"></textarea></div>
-          </div>
-          <div class="alert error" ng-if="vm.messageType === 'error'">{{vm.message}}</div><div class="alert ok" ng-if="vm.messageType === 'ok'">{{vm.message}}</div>
-          <div class="actions"><button class="btn primary" type="submit">Register Student&nbsp; →</button><button class="btn secondary" type="button" ng-click="vm.reset(registrationForm)">Clear form</button></div>
+<body ng-controller="StudentController">
+
+    <div class="container">
+        <h1>Student Registration</h1>
+        <p class="subtitle">Student Registration &amp; Profile Form</p>
+
+        <form name="studentForm" ng-submit="registerStudent()" novalidate>
+
+            <div class="form-group">
+                <label>Student Name</label>
+                <input type="text" name="studentName"
+                       ng-model="student.name"
+                       required ng-minlength="2"
+                       placeholder="Enter full name">
+                <small class="error" ng-if="studentForm.studentName.$touched && studentForm.studentName.$invalid">
+                    Enter a name with at least 2 characters.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Enrollment Number</label>
+                <input type="text" name="enrollment"
+                       ng-model="student.enrollment"
+                       required placeholder="e.g. 101">
+                <small class="error" ng-if="studentForm.enrollment.$touched && studentForm.enrollment.$invalid">
+                    Enrollment number is required.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email"
+                       ng-model="student.email"
+                       required placeholder="student@example.com">
+                <small class="error" ng-if="studentForm.email.$touched && studentForm.email.$invalid">
+                    Enter a valid email address.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="tel" name="mobile"
+                       ng-model="student.mobile"
+                       ng-pattern="/^[0-9]{10}$/"
+                       required placeholder="10-digit mobile number">
+                <small class="error" ng-if="studentForm.mobile.$touched && studentForm.mobile.$invalid">
+                    Enter a valid 10-digit mobile number.
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" ng-model="student.gender" value="Male" required> Male</label>
+                    <label><input type="radio" ng-model="student.gender" value="Female"> Female</label>
+                    <label><input type="radio" ng-model="student.gender" value="Other"> Other</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Course</label>
+                <select name="course" ng-model="student.course" required>
+                    <option value="">Select Course</option>
+                    <option>B.Tech</option>
+                    <option>BCA</option>
+                    <option>B.Sc</option>
+                    <option>MCA</option>
+                    <option>M.Tech</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Semester</label>
+                <select name="semester" ng-model="student.semester" required>
+                    <option value="">Select Semester</option>
+                    <option ng-repeat="n in semesters" value="{{n}}">
+                        {{n}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Hobbies</label>
+                <input type="text" ng-model="student.hobbies"
+                       placeholder="e.g. Coding, Gaming, Reading">
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea ng-model="student.address" rows="3"
+                          placeholder="Enter your address"></textarea>
+            </div>
+
+            <button type="submit">Register Student</button>
+
+            <p class="success" ng-if="successMessage">
+                {{successMessage}}
+            </p>
         </form>
-      </section>
-      <aside class="card">
-        <div class="card-head"><div><h3>Registered Students</h3><div class="sub">Live list updated after registration.</div></div><span class="pill">LIVE DATA</span></div>
-        <div class="stats"><div class="stat"><span>Total students</span><strong>{{vm.students.length}}</strong></div><div class="stat"><span>Current semester</span><strong>5<small style="font-size:12px;color:var(--muted)"> / 8</small></strong></div></div>
-        <div class="table-wrap" ng-if="vm.students.length"><table><thead><tr><th>Enrollment</th><th>Name</th><th>Course</th><th>Sem.</th><th>Action</th></tr></thead><tbody><tr ng-repeat="student in vm.students track by student.enrollment"><td>{{student.enrollment}}</td><td>{{student.name}}</td><td>{{student.course}}</td><td>{{student.semester}}</td><td><button class="delete" type="button" ng-click="vm.remove(student.enrollment)">Remove</button></td></tr></tbody></table></div>
-        <div class="empty" ng-if="!vm.students.length"><div class="icon">✦</div><strong>No students registered yet</strong><p>Complete the form and select Register Student to add the first profile.</p></div>
-        <div class="sub" style="margin-top:14px">Tip: Enrollment numbers must be unique. Duplicate entries are rejected.</div>
-      </aside>
+
+        <section class="table-section">
+            <h2>Registered Students</h2>
+
+            <p ng-if="students.length === 0">
+                No students registered yet.
+            </p>
+
+            <div class="table-wrapper" ng-if="students.length > 0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Enrollment</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Semester</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="s in students track by $index">
+                            <td>{{s.enrollment}}</td>
+                            <td>{{s.name}}</td>
+                            <td>{{s.course}}</td>
+                            <td>{{s.semester}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="profile" ng-if="registeredStudent">
+            <h2>Latest Registered Profile</h2>
+            <p><strong>Name:</strong> {{registeredStudent.name}}</p>
+            <p><strong>Enrollment:</strong> {{registeredStudent.enrollment}}</p>
+            <p><strong>Email:</strong> {{registeredStudent.email}}</p>
+            <p><strong>Mobile:</strong> {{registeredStudent.mobile}}</p>
+            <p><strong>Gender:</strong> {{registeredStudent.gender}}</p>
+            <p><strong>Course:</strong> {{registeredStudent.course}}</p>
+            <p><strong>Semester:</strong> {{registeredStudent.semester}}</p>
+            <p><strong>Hobbies:</strong> {{registeredStudent.hobbies || 'Not specified'}}</p>
+            <p><strong>Address:</strong> {{registeredStudent.address || 'Not specified'}}</p>
+        </section>
     </div>
-    <footer class="footer">Created by <strong>Ayushi Shah</strong> · Enrollment No. 24BT04157<br/>B.Tech Computer Science & Engineering · Semester 5 · Advanced Web Technology</footer>
-  </main>
-  <script>
-    angular.module('studentApp', []).controller('StudentController', function () {
-      var vm = this;
-      vm.form = { name: 'Ayushi Shah', enrollment: '24BT04157', course: 'B.Tech CSE', semester: '5', gender: 'Female' };
-      vm.students = [];
-      vm.message = '';
-      vm.messageType = '';
-      vm.register = function (form) {
-        vm.message = ''; vm.messageType = '';
-        if (form.$invalid) { vm.message = 'Please complete all required fields correctly. Mobile number must contain exactly 10 digits.'; vm.messageType = 'error'; return; }
-        var enrollment = String(vm.form.enrollment).trim().toUpperCase();
-        var duplicate = vm.students.some(function (s) { return s.enrollment.toUpperCase() === enrollment; });
-        if (duplicate) { vm.message = 'Enrollment number already exists! Please use a unique enrollment number.'; vm.messageType = 'error'; return; }
-        vm.students.push({ name: vm.form.name.trim(), enrollment: enrollment, email: vm.form.email.trim(), mobile: vm.form.mobile, gender: vm.form.gender, course: vm.form.course, semester: vm.form.semester, hobbies: vm.form.hobbies || '', address: vm.form.address || '' });
-        vm.message = 'Student registered successfully!'; vm.messageType = 'ok';
-        vm.form = { name: '', enrollment: '', email: '', mobile: '', gender: '', course: '', semester: '', hobbies: '', address: '' };
-        form.$setPristine(); form.$setUntouched();
-      };
-      vm.reset = function (form) { vm.form = { name: '', enrollment: '', email: '', mobile: '', gender: '', course: '', semester: '', hobbies: '', address: '' }; vm.message = ''; vm.messageType = ''; form.$setPristine(); form.$setUntouched(); };
-      vm.remove = function (enrollment) { vm.students = vm.students.filter(function (s) { return s.enrollment !== enrollment; }); vm.message = 'Student removed from the list.'; vm.messageType = 'ok'; };
-    });
-  </script>
+
+    <script src="app.js"></script>
 </body>
 </html>
